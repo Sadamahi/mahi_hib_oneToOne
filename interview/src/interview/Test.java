@@ -1,8 +1,15 @@
 package interview;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.*;
 
-public class Test {
+public class Test extends Parent {
+	static int prev =0;
+	public void p() {
+		System.out.println("child");
+	}
 	public static void main(String[] args) {
 		/*
 		 * IntBinaryOperator u = (i,j)-> i*j; System.out.println(u.applyAsInt(4,5));
@@ -32,8 +39,24 @@ public class Test {
 		 * 
 		 * IntPredicate ip = i->i>5; System.out.println(ip.test(44));
 		 */
+		List<String> l = Arrays.asList("Indore1", "Delhi","Indore2","Indore3");
+	Optional<String> op=	l.stream().filter(i->i.startsWith("I")).findFirst();
+		if(op.isPresent()) {
+			System.out.println("found");
+		}
+//		System.out.println(op.orElseGet(()->"hello"));
+		//op.ifPresent(System.out::println);
 		
-		
+		System.out.println(op.orElse("sada"));
+		try {
+			System.out.println(op.orElseThrow(()->new Exception(" for vote your age is more than 17")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Optional<String> of = Optional.ofNullable("java");
+
+		System.out.println(of.orElse("null value sis working"));;
 	}
 
 }
